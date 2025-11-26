@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Role extends Model
+{
+    protected $fillable = [
+        'rolename',
+        'description',
+    ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'role_id', 'id');
+    }
+}
