@@ -1,5 +1,6 @@
 import { useState } from "react";
 import api from "../api/api";
+import setAuthToken from "../api/setAuthToken";
 
 function Login(){
     const [email, setEmail] = useState<string>("");
@@ -40,7 +41,7 @@ function Login(){
             const token = response.data.token;
             localStorage.setItem("token", token);
 
-            alert("Login successful");
+            setAuthToken(token);
         } catch (error: any) {
             if (error.response && error.response.status === 401){
                 setPasswordError("Invalid credentials");
@@ -60,7 +61,7 @@ function Login(){
                     {emailError && <p style={{ color: "red" }}>{ emailError }</p>}
 
                     <label htmlFor="">Password</label>
-                    <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     {passwordError && <p style={{ color: "red" }}>{ passwordError }</p>}
 
 
