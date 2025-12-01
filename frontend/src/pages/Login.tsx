@@ -1,6 +1,7 @@
 import { useState } from "react";
 import api from "../api/api";
 import setAuthToken from "../api/setAuthToken";
+import { useNavigate } from "react-router-dom";
 
 function Login(){
     const [email, setEmail] = useState<string>("");
@@ -8,6 +9,8 @@ function Login(){
 
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -34,14 +37,15 @@ function Login(){
 
         try {
             const response = await api.post("/login", {
-                email,
-                password,
+                "email_address": email,
+                "nominated_pass": password,
             });
 
             const token = response.data.token;
             localStorage.setItem("token", token);
 
             setAuthToken(token);
+            navigate("/dashboard");
         } catch (error: any) {
             if (error.response && error.response.status === 401){
                 setPasswordError("Invalid credentials");
