@@ -1,4 +1,5 @@
 import { useState } from "react";
+import api from "../api/api";
 
 function Login(){
     const [email, setEmail] = useState<string>("");
@@ -7,8 +8,11 @@ function Login(){
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        setEmailError("");
+        setPasswordError("");
 
         let valid = true;
 
@@ -27,7 +31,23 @@ function Login(){
 
         if (!valid) return;
 
-        
+        try {
+            const response = await api.post("/login", {
+                email,
+                password,
+            });
+
+            const token = response.data.token;
+            localStorage.setItem("token", token);
+
+            alert("Login successful");
+        } catch (error: any) {
+            if (error.response && error.response.status === 401){
+                setPasswordError("Invalid credentials");
+            } else {
+                console.error(error);
+            }
+        }
         
     }
  
@@ -37,9 +57,12 @@ function Login(){
                 <form action="" onSubmit={handleSubmit}>
                     <label htmlFor="">Email Adress</label>
                     <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                    {emailError && <p style={{ color: "red" }}>{ emailError }</p>}
 
                     <label htmlFor="">Password</label>
                     <input type="text" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    {passwordError && <p style={{ color: "red" }}>{ passwordError }</p>}
+
 
                     <button type="submit">Login</button>
                 </form>
