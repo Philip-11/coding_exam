@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-import Users from './pages/Users';
+import Users from './pages/Users/Users';
 import './App.css';
 import setAuthToken from './api/setAuthToken';
 
