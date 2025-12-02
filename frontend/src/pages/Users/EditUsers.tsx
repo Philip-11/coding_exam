@@ -21,6 +21,12 @@ function EditUsers(){
 
     useEffect(() => {
         const fetchUser = async () => {
+            const token = localStorage.getItem("token");
+
+            if (!token){
+                navigate("/");
+            }
+            
             try {
                 const res = await api.get(`/users/${id}`);
                 const user = res.data;
