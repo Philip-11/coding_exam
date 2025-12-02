@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import api from "../api/api";
+import LogoutButton from "../components/LogoutButton";
 
 function Dashboard(){
     const navigate = useNavigate();
@@ -33,10 +34,7 @@ function Dashboard(){
                 <h1>Dashboard</h1>
                 <p>You're logged in!</p>
                 <p>Welcome, {fullName || "loading..."} </p>
-                <button onClick={() => {
-                    localStorage.removeItem("token");
-                    navigate("/");
-                }}>Logout</button>
+                <LogoutButton />
 
                 <button onClick={() => {
                     navigate("/users");
