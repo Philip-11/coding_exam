@@ -58,6 +58,10 @@ function Users(){
                 </table>
             </div>
 
+            <button onClick={() => {
+                navigate("/create/users");
+            }}>Create</button>
+
             <LogoutButton />
         </>
     );
