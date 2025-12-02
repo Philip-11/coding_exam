@@ -64,7 +64,7 @@ function CreateRoles(){
         <div>
             <h1>Create Role</h1>
 
-            <form >
+            <form onSubmit={handleSubmit} >
                 <label>Role Name</label>
                 <input type="text" value={roleName} onChange={(e) => setRoleName(e.target.value)}/> <br />
                 { roleNameError && <p style={{ color: "red" }}>{roleNameError}</p>}
