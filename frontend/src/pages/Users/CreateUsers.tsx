@@ -67,6 +67,7 @@ function CreateUsers(){
                 email_address: email,
                 nominated_pass: nominatedPass,
                 confirmed_pass: confirmPass,
+                role_id: Number(roleId),
             });
 
             navigate("/users");
@@ -99,23 +100,23 @@ function CreateUsers(){
             <h1>Create User</h1>
             <form action="" onSubmit={handleSubmit}>
                 <label>Full Name</label>
-                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)}/>
+                <input type="text" value={fullName} onChange={(e) => setFullName(e.target.value)}/> <br />
                 {fullNameError && <p style={{ color: "red" }}>{fullNameError}</p>}
 
                 <label>Email Address</label>
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
                 {emailError && <p style={{ color: "red" }}>{emailError}</p>}
 
                 <label>Nominated Password</label>
-                <input type="password" value={nominatedPass} onChange={(e) => setNominatedPass(e.target.value)} />
+                <input type="password" value={nominatedPass} onChange={(e) => setNominatedPass(e.target.value)} /> <br />
                 {nominatedPassError && <p style={{ color: "red" }}>{nominatedPassError}</p>}
 
                 <label>Confirm Password</label>
-                <input type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} />
+                <input type="password" value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} /> <br />
                 {confirmPassError && <p style={{ color: "red" }}>{confirmPassError}</p>}
 
                 <label>Role</label>
-                <select value={roleId} onChange={(e) => setRoleId((e.target.value))}>
+                <select value={roleId} onChange={(e) => setRoleId((e.target.value))}> <br />
                     <option value={0}>Select a role</option>
                     <option value={1}>Admin</option>
                     <option value={2}>User</option>
@@ -123,6 +124,10 @@ function CreateUsers(){
                 {roleError && <p style={{ color: "red" }}>{roleError}</p>}
 
                 <button type="submit">Create User</button>
+
+                <button onClick={() => {
+                    navigate("/dashboard");
+                }}>Back to dashboard</button>
 
 
             </form>
