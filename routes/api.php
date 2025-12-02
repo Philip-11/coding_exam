@@ -28,8 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //Role route
     Route::get('/roles', [RolesController::class, 'index']);
-    Route::post('/users', [RolesController::class, 'store']);
-    Route::get('/users/{id}', [RolesController::class, 'show']);
-    Route::put('/users/{id}', [RolesController::class, 'update']);
-    Route::delete('/users/{id}', [RolesController::class, 'destroy']);
+    Route::post('/roles', [RolesController::class, 'store']);
+    Route::get('/roles/{id}', [RolesController::class, 'show']);
+    Route::put('/roles/{id}', [RolesController::class, 'update']);
+    Route::delete('/roles/{id}', [RolesController::class, 'destroy']);
 });
