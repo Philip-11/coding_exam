@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email_address');
             $table->string('nominated_pass');
             $table->string('confirmed_pass');
-            $table->foreignId('role_id')->unique()->constrained('roles');
+            $table->foreignId('role_id')->constrained('roles');
         });
     }
 
