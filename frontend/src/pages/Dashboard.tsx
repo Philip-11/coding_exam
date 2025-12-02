@@ -39,6 +39,11 @@ function Dashboard(){
                 <button onClick={() => {
                     navigate("/users");
                 }}>Users</button>
+
+
+                <button onClick={() => {
+                    navigate("/roles");
+                }}>Roles</button>
             </div>
         </>
     );
