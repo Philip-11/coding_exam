@@ -34,6 +34,19 @@ function Users(){
         fetchUsers();
     }, []);
 
+    const handleDelete = async (id: number) => {
+        if (!confirm("Are you sure you want to delete this user?")) return;
+
+        try {
+            await api.delete(`users/${id}`);        
+            setUsers(prev => prev.filter(user => user.id !== id));
+            alert("User deleted successfully");
+        } catch (error: any) {
+            console.error(error);
+            alert("Failed to delete user");
+        }
+    }
+
     return(
         <>
             <div>
@@ -55,6 +68,8 @@ function Users(){
                                 <td>{u.role_id}</td>
                                 <td>
                                     <button onClick={() => {navigate(`/users/edit/${u.id}`)}}>Edit</button>
+
+                                    <button onClick={() => handleDelete(u.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))}
