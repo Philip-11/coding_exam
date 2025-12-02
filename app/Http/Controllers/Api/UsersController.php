@@ -26,8 +26,8 @@ class UsersController extends Controller
     {
         
         $validated = $request->validate([
-            'full_name' => 'required|string',
-            'email_address' => 'required|email',
+            'full_name' => 'required|unique:users,full_name',
+            'email_address' => 'required|unique:users,email_address|email',
             'nominated_pass' => 'required',
             'confirmed_pass' => 'required|same:nominated_pass',
             'role_id' => 'required|exists:roles,id',
