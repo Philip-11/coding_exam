@@ -37,6 +37,10 @@ function Dashboard(){
                     localStorage.removeItem("token");
                     navigate("/");
                 }}>Logout</button>
+
+                <button onClick={() => {
+                    navigate("/users");
+                }}>Users</button>
             </div>
         </>
     );
