@@ -44,6 +44,7 @@ function Users(){
                             <th>Full Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,9 @@ function Users(){
                                 <td>{u.full_name}</td>
                                 <td>{u.email_address}</td>
                                 <td>{u.role_id}</td>
+                                <td>
+                                    <button onClick={() => {navigate(`/users/edit/${u.id}`)}}>Edit</button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -59,7 +63,7 @@ function Users(){
             </div>
 
             <button onClick={() => {
-                navigate("/create/users");
+                navigate("/users/create");
             }}>Create</button>
 
             <LogoutButton />
