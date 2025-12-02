@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import LogoutButton from "../../components/LogoutButton";
 
 interface Roles{
     id: number;
@@ -37,6 +38,7 @@ function Roles(){
     }
 
     return(
+        <>
         <div>
             <h1>Roles</h1>
             <table>
@@ -63,6 +65,14 @@ function Roles(){
                 </tbody>
             </table>
         </div>
+
+        <button onClick={() => {
+                navigate("/roles/create");
+            }}>Create</button>
+
+            <LogoutButton/>
+        </>
+            
     )
 }
 
